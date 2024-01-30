@@ -1,29 +1,34 @@
 import { Component } from '@angular/core';
+import {EmployeeService} from "../service/employee.service";
+import {NgForm} from "@angular/forms";
+import {EmployeeDto} from "../dto/employee-dto";
+import {LoginDto} from "../dto/login-dto";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-banner',
   template: `
-    <section id="banner" class="bg-gray-900 dark:bg-white py-16">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl dark:text-gray-900">Please sign-in to view employee details</h1>
+    <section id="banner" class="bg-gray-900 dark:bg-white py-4 overflow-y-scroll overflow-hidden h-[calc(60vh)]">
+      <div class="py-2 px-4 mx-auto max-w-screen-xl text-center lg:py-8">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl dark:text-gray-900">Please log-in to view employee details</h1>
         <p class="mb-8 text-lg font-normal text-gray-400 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-500">Enter your username and password</p>
       </div>
 
       <div class="py-8 px-4 mx-auto max-w-screen-sm text-center lg:py-12">
-        <form class="space-y-4" action="#">
+        <form (ngSubmit)="onSubmit(frmNgForm)" #frmNgForm="ngForm" class="space-y-4" action="#">
           <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-white dark:text-gray-900">Username</label>
-            <input pattern="^[A-Za-z ]{2,}$" type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="John Doe" required>
+            <label for="username" class="block mb-2 text-sm font-medium text-white dark:text-gray-900">Username</label>
+            <input #username ngModel pattern="^[A-Za-z ]{2,}$" type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="John Doe" required>
           </div>
           <div>
             <label for="password" class="block mb-2 text-sm font-medium text-white dark:text-gray-900">Password</label>
-            <input pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}$" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+            <input #password ngModel pattern="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,}$" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
           </div>
           <div class="flex justify-between">
 
             <a href="https://www.hirdaramani.com/contact/" class="text-sm text-blue-700 hover:underline dark:text-blue-500">Lost Password? Contact Us</a>
           </div>
-          <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+          <button  [disabled]="frmNgForm.invalid" type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login as Administrator</button>
         </form>
       </div>
       <div class="py-8 px-4 mx-auto max-w-screen-sm text-center lg:py-12 hidden" role="status">
@@ -38,5 +43,31 @@ import { Component } from '@angular/core';
   styleUrl: './banner.component.scss'
 })
 export class BannerComponent {
+
+  constructor(private service:EmployeeService, private router:Router) {
+
+  }
+
+  onSubmit (f: NgForm){
+    console.log(f.value)
+    const username = f.value.username.trim();
+    const password = f.value.password.trim();
+
+    if(!username){
+
+      return;
+    }
+
+    if(!password){
+
+      return;
+    }
+
+    this.service.loginAdminUser(new LoginDto( username, password ));
+    sessionStorage.setItem("username", username);
+    sessionStorage.setItem("password", password);
+    f.reset();
+
+  }
 
 }

@@ -1,0 +1,157 @@
+<section id="book-details" class=" flex items-center justify-between bg-gray-900 dark:bg-white overflow-y-scroll overflow-hidden h-[calc(80vh)]">
+
+  <div class="mx-auto flex-row p-5">
+
+    <div class="flex-row p-5 border border-blue-300 rounded mb-10" >
+      <p class="text-sm font-medium text-white truncate dark:text-gray-900">View Past Payments</p>
+    <form (ngSubmit)="onSubmit(frmNgForm)" #frmNgForm="ngForm"
+          class="flex-col max-w-md mx-auto m-5">
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-5 group">
+          <input ngModel type="text"
+                 pattern="^20(1[1-9]|[2-9][0-9])$"
+                 name="year" #year id="year"
+                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                 placeholder=" " required/>
+          <label for="year"
+                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            Year
+          </label>
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+          <input ngModel type="text" pattern="^[0-9]" name="idNumber" id="idNumber"
+                 #idNumber
+                 class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                 placeholder=" " required/>
+          <label for="idNumber"
+                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Employee ID</label>
+        </div>
+      </div>
+
+      <button type="submit"
+              [disabled]="frmNgForm.invalid"
+              class="ms-0.5 text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
+        View
+      </button>
+    </form>
+    </div>
+
+    <div class="flex-row p-5 border border-blue-300 rounded" >
+      <p class="text-sm font-medium text-white truncate dark:text-gray-900">Pay Employee</p>
+      <form (ngSubmit)="onSubmit2(frm2NgForm)" #frm2NgForm="ngForm"
+            class="flex-col max-w-md mx-auto m-5">
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-5 group">
+            <input ngModel type="text"
+                   pattern="^20(1[1-9]|[2-9][0-9])$"
+                   name="year" #payYear id="payYear"
+                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                   placeholder=" " required/>
+            <label for="payYear"
+                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Year
+            </label>
+          </div>
+          <div class="relative z-0 w-full mb-5 group">
+            <input ngModel type="text"
+                   pattern="^JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC$"
+                   name="month" #month id="month"
+                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                   placeholder=" " required/>
+            <label for="month"
+                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Month
+            </label>
+          </div>
+          <div class="relative z-0 w-full mb-5 group">
+            <input ngModel type="text"
+                   name="payment" #payment id="payment"
+                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                   placeholder=" " required/>
+            <label for="payment"
+                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Salary
+            </label>
+          </div>
+          <div class="relative z-0 w-full mb-5 group">
+            <input ngModel type="text" pattern="^[0-9]" name="empNumber" id="empNumber"
+                   #empNumber
+                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                   placeholder=" " required/>
+            <label for="empNumber"
+                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Employee ID</label>
+          </div>
+        </div>
+
+        <button type="submit"
+                [disabled]="frm2NgForm.invalid"
+                class="ms-0.5 text-white bg-blue-700 hover:bg-blue-800 active:ring-4 active:outline-none active:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:active:ring-blue-800">
+          Pay
+        </button>
+      </form>
+
+      <!-- Main modal -->
+
+
+    </div>
+
+  </div>
+
+
+
+  <div class="grid justify-center items-center py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+    @if(salaryList.length != 0 ) {
+        <h1 class="text-center mb-4 text-2xl font-extrabold tracking-tight leading-none text-white md:text-3xl lg:text-4xl dark:text-gray-900">Salaries Paid to {{salaryList[0].employeeId}}</h1>
+    }@else{
+        <h1 class="text-center mb-4 text-2xl font-extrabold tracking-tight leading-none text-white md:text-3xl lg:text-4xl dark:text-gray-900">Select Employee ID and Year</h1>
+    }
+    <div class="overflow-hidden overflow-y-scroll">
+      <ul class=" divide-y divide-gray-200 dark:divide-gray-700">
+
+        @if(salaryList.length != 0 ) {
+          @for(salary of salaryList; track $index){
+          <li class="pb-3 sm:pb-4">
+            <div class="flex items-center space-x-4 rtl:space-x-reverse">
+              <div class="flex-shrink-0">
+                <img class="w-8 h-8 rounded-full hover:cursor-pointer" src="../assets/img/default-img.jpg" alt="profile-image">
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-white truncate dark:text-gray-900">
+                  {{salary.year}}
+                </p>
+                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                  {{salary.month}}
+                </p>
+              </div>
+              <div class="inline-flex items-center text-base font-semibold text-white dark:text-gray-900">
+                {{salary.salary}}
+              </div>
+
+            </div>
+          </li>
+          }
+        }@else {
+            <li class="pb-3 sm:pb-4">
+              <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                <div class="flex-shrink-0">
+                  <img class="w-8 h-8 rounded-full hover:cursor-pointer" src="../assets/img/default-img.jpg" alt="profile-image">
+                </div>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-white truncate dark:text-gray-900">
+            Year
+            </p>
+            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+            Month
+            </p>
+          </div>
+          <div class="inline-flex items-center text-base font-semibold text-white dark:text-gray-900">
+            No records to show
+            </div>
+
+          </div>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>

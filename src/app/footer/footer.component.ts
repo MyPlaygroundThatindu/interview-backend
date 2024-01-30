@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
-    <footer class="fixed top-100 left-0 right-0 bottom-0 w-full bg-white dark:bg-gray-900">
+    <footer class=" top-100 left-0 right-0 bottom-0 w-full bg-white dark:bg-gray-900">
       <div class="mx-auto w-full max-w-screen-xl ">
         <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4">
           <div>
@@ -72,6 +72,9 @@ import { Component } from '@angular/core';
               </li>
               <li class="mb-4">
                 <a href="#" class="hover:underline dark:hover:text-white">Terms &amp; Conditions</a>
+              </li>
+              <li class="mb-4">
+                <a href="#" class="hover:underline dark:hover:text-white">Logos used for test purposes only</a>
               </li>
             </ul>
           </div>
